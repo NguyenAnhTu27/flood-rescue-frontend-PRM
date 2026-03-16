@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Flood Rescue Mobile</string>
+    <string name="app_logo">FR</string>
+    <string name="splash_subtitle">MVVM Android scaffold for the flood rescue system</string>
+
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Sign in with the backend account you created in the rescue system.</string>
+    <string name="login_identifier_hint">Phone number or email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_loading">Signing in...</string>
+    <string name="login_success">Login success</string>
+    <string name="login_identifier_error">Please enter phone number or email</string>
+    <string name="login_password_error">Please enter password</string>
+
+    <string name="home_title">Flood Rescue Dashboard</string>
+    <string name="home_welcome">Hello, %1$s</string>
+    <string name="home_role">Current role: %1$s</string>
+    <string name="profile_section">Profile from backend</string>
+    <string name="action_citizen">Citizen module</string>
+    <string name="action_coordinator">Coordinator module</string>
+    <string name="action_chat">Rescue chat module</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="placeholder_citizen">Citizen screens will be added here next.</string>
+    <string name="placeholder_coordinator">Coordinator screens will be added here next.</string>
+    <string name="placeholder_chat">Chat screens will be added here next.</string>
+    <string name="not_available">Not available</string>
+</resources>

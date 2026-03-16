@@ -1,0 +1,19 @@
+# Android / Gradle
+.gradle/
+local.properties
+captures/
+build/
+app/build/
+
+# IDE
+*.iml
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# OS
+.DS_Store
+Thumbs.db
