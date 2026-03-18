@@ -43,4 +43,15 @@
     <color name="onboarding_card">#FFF1D6</color>
     <color name="onboarding_ring">#EAF2FD</color>
     <color name="setup_icon_bg">#EAF3FF</color>
+    <color name="portal_header_start">#07243A</color>
+    <color name="portal_header_mid">#0C4A6E</color>
+    <color name="portal_header_end">#198CFF</color>
+    <color name="portal_header_soft_text">#DCEBFF</color>
+    <color name="portal_header_chip_fill">#1FFFFFFF</color>
+    <color name="portal_header_chip_stroke">#38FFFFFF</color>
+    <color name="portal_surface_card">#FCFEFF</color>
+    <color name="portal_surface_alt">#F7FAFD</color>
+    <color name="portal_shadow_soft">#12072A45</color>
+    <color name="portal_metric_note">#5E7188</color>
+    <color name="portal_bottom_stroke">#D9E4F0</color>
 </resources>

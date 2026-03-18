@@ -6,6 +6,8 @@ public class UserProfileResponse {
     private String phone;
     private String email;
     private String role;
+    private Boolean rescueRequestBlocked;
+    private String rescueRequestBlockedReason;
 
     public Long getId() {
         return id;
@@ -25,5 +27,13 @@ public class UserProfileResponse {
 
     public String getRole() {
         return role;
+    }
+
+    public Boolean getRescueRequestBlocked() {
+        return rescueRequestBlocked;
+    }
+
+    public String getRescueRequestBlockedReason() {
+        return rescueRequestBlockedReason;
     }
 }

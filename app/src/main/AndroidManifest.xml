@@ -11,16 +11,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FloodRescue">
 
-        <activity android:name=".ui.profile.ProfileActivity" android:exported="false" />
-        <activity android:name=".ui.notification.NotificationActivity" android:exported="false" />
-        <activity android:name=".ui.chat.DispatchChatActivity" android:exported="false" />
-        <activity android:name=".ui.request.update.RequestUpdateActivity" android:exported="false" />
-        <activity android:name=".ui.request.detail.RequestDetailActivity" android:exported="false" />
-        <activity android:name=".ui.relief.create.CreateReliefRequestActivity" android:exported="false" />
-        <activity android:name=".ui.rescue.create.CreateRescueRequestActivity" android:exported="false" />
-        <activity android:name=".ui.map.SafeMapActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.setting.AdminSettingActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.permission.AdminPermissionActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.audit.AdminAuditActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.team.AdminTeamActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.user.form.AdminUserFormActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.user.list.AdminUserListActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.asset.list.ManagerAssetListActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.inventory.issue.list.ManagerInventoryIssueListActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.inventory.receipt.list.ManagerInventoryReceiptListActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.inventory.stock.ManagerInventoryStockActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.dispatch.ManagerDispatchActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.relief.detail.ManagerReliefDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.relief.create.ManagerReliefCreateActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.relief.list.ManagerReliefListActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.relief.detail.RescuerReliefDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.relief.list.RescuerReliefListActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.teamlocation.RescuerTeamLocationActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.taskgroup.detail.RescuerTaskGroupDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.taskgroup.list.RescuerTaskGroupListActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.task.detail.RescuerTaskDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.task.list.RescuerTaskListActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.taskgroup.detail.CoordinatorTaskGroupDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.taskgroup.create.CoordinatorTaskGroupCreateActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.taskgroup.list.CoordinatorTaskGroupListActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.blockedcitizen.BlockedCitizenListActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.rescuedetail.CoordinatorRescueDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.rescuequeue.CoordinatorRescueQueueActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.feedback.CitizenFeedbackActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.rescue.update.CitizenRescueUpdateActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.rescue.detail.CitizenRescueDetailActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.rescue.list.CitizenRescueListActivity" android:exported="false" />
+        <activity android:name=".ui.role.admin.dashboard.AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.role.manager.dashboard.ManagerDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.role.rescuer.dashboard.RescuerDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.role.coordinator.dashboard.CoordinatorDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.dashboard.CitizenDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.shared.profile.ProfileActivity" android:exported="false" />
+        <activity android:name=".ui.shared.notification.NotificationActivity" android:exported="false" />
+        <activity android:name=".ui.role.citizen.rescue.create.CreateRescueRequestActivity" android:exported="false" />
+        <activity android:name=".ui.shared.map.SafeMapActivity" android:exported="false" />
         <activity android:name=".ui.auth.register.RegisterCitizenActivity" android:exported="false" />
-        <activity android:name=".ui.auth.forgot.ForgotPasswordActivity" android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false"
