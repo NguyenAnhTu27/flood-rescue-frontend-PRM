@@ -8,29 +8,37 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.floodrescue.mobile.data.local.SessionManager;
 import com.floodrescue.mobile.databinding.ActivitySplashBinding;
-import com.floodrescue.mobile.ui.auth.login.LoginActivity;
-import com.floodrescue.mobile.ui.home.HomeActivity;
+import com.floodrescue.mobile.ui.onboarding.OnboardingActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
     private ActivitySplashBinding binding;
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Runnable routeRunnable = this::routeNextScreen;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+    }
 
-        SessionManager sessionManager = new SessionManager(this);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handler.removeCallbacks(routeRunnable);
+        handler.postDelayed(routeRunnable, 2400);
+    }
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = sessionManager.isLoggedIn()
-                    ? new Intent(this, HomeActivity.class)
-                    : new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }, 1000);
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(routeRunnable);
+        super.onPause();
+    }
+
+    private void routeNextScreen() {
+        startActivity(new Intent(this, OnboardingActivity.class));
+        finish();
     }
 }

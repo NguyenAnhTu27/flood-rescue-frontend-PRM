@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView android:id="@+id/buttonBack" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="←" android:textColor="@color/text_primary" android:textSize="20sp" android:textStyle="bold" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="Bản đồ an toàn" android:textColor="@color/text_primary" android:textStyle="bold" />
+        <View android:layout_width="40dp" android:layout_height="40dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/mapStage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_map_gradient"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_surface_card"
+            android:elevation="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="12dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌕" android:textColor="@color/text_muted" android:textSize="16sp" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:text="Tìm điểm cứu trợ, vùng an toàn..." android:textColor="@color/text_muted" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="◉" android:textColor="@color/accent" android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="38dp" android:layout_height="38dp" android:layout_marginStart="58dp" android:layout_marginTop="150dp" android:background="@drawable/bg_pin_green" android:gravity="center" android:text="•" android:textColor="@color/white" android:textSize="22sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="38dp" android:layout_marginTop="192dp" android:background="@drawable/bg_surface_card" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="Vùng an toàn" android:textColor="#15A46C" android:textSize="11sp" android:textStyle="bold" />
+        <TextView android:layout_width="38dp" android:layout_height="38dp" android:layout_marginStart="208dp" android:layout_marginTop="248dp" android:background="@drawable/bg_pin_red" android:gravity="center" android:text="•" android:textColor="@color/white" android:textSize="22sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="194dp" android:layout_marginTop="290dp" android:background="@drawable/bg_surface_card" android:paddingHorizontal="10dp" android:paddingVertical="4dp" android:text="Trạm y tế" android:textColor="#F04438" android:textSize="11sp" android:textStyle="bold" />
+        <TextView android:layout_width="38dp" android:layout_height="38dp" android:layout_marginStart="128dp" android:layout_marginTop="344dp" android:background="@drawable/bg_pin_blue" android:gravity="center" android:text="•" android:textColor="@color/white" android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="44dp"
+            android:layout_height="96dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/bg_surface_card"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView android:layout_width="32dp" android:layout_height="32dp" android:gravity="center" android:text="◈" android:textColor="@color/text_primary" />
+            <TextView android:layout_width="32dp" android:layout_height="32dp" android:gravity="center" android:text="◎" android:textColor="@color/accent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_bottom_sheet"
+            android:elevation="12dp"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <View android:layout_width="48dp" android:layout_height="4dp" android:layout_gravity="center_horizontal" android:background="@drawable/bg_input_soft" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:background="@drawable/bg_chip_success" android:paddingHorizontal="10dp" android:paddingVertical="5dp" android:text="PHỔ BIẾN NHẤT  • 1.2 km" android:textColor="@color/success" android:textSize="11sp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_marginTop="10dp" android:orientation="horizontal"><TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Sân vận động Quận khu 7" android:textColor="@color/text_primary" android:textSize="26sp" android:textStyle="bold" /><TextView android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/bg_circle_soft" android:gravity="center" android:text="↗" android:textColor="@color/accent" /></LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="202 Hoàng Văn Thụ, Phường 9, Phú Nhuận" android:textColor="@color/text_secondary" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal"><LinearLayout android:layout_width="0dp" android:layout_height="76dp" android:layout_weight="1" android:background="@drawable/bg_input_soft" android:orientation="vertical" android:padding="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SỨC CHỨA" android:textColor="@color/text_muted" android:textSize="11sp" android:textStyle="bold" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="1,200 / 1,500" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold" /></LinearLayout><LinearLayout android:layout_width="0dp" android:layout_height="76dp" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/bg_input_soft" android:orientation="vertical" android:padding="12dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TÌNH TRẠNG" android:textColor="@color/text_muted" android:textSize="11sp" android:textStyle="bold" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="● Còn chỗ" android:textColor="@color/success" android:textSize="18sp" android:textStyle="bold" /></LinearLayout></LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal"><Button android:id="@+id/buttonDirections" android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1" android:background="@drawable/bg_cta_primary" android:text="Chỉ đường" android:textAllCaps="false" android:textColor="@color/white" android:textStyle="bold" /><TextView android:id="@+id/buttonCall" android:layout_width="54dp" android:layout_height="54dp" android:layout_marginStart="10dp" android:background="@drawable/bg_input_soft" android:gravity="center" android:text="✆" android:textColor="@color/text_primary" android:textSize="20sp" /></LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        android:background="@color/white"
+        android:elevation="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout android:id="@+id/navHome" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⌂" android:textColor="@color/nav_inactive" android:textSize="18sp" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Trang chủ" android:textColor="@color/nav_inactive" android:textSize="11sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navMap" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="◫" android:textColor="@color/accent" android:textSize="18sp" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bản đồ" android:textColor="@color/accent" android:textSize="11sp" android:textStyle="bold" /></LinearLayout>
+        <LinearLayout android:id="@+id/navNotification" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="!" android:textColor="@color/nav_inactive" android:textSize="18sp" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Thông báo" android:textColor="@color/nav_inactive" android:textSize="11sp" /></LinearLayout>
+        <LinearLayout android:id="@+id/navProfile" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="◉" android:textColor="@color/nav_inactive" android:textSize="18sp" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cá nhân" android:textColor="@color/nav_inactive" android:textSize="11sp" /></LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

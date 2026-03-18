@@ -11,12 +11,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FloodRescue">
 
+        <activity android:name=".ui.profile.ProfileActivity" android:exported="false" />
+        <activity android:name=".ui.notification.NotificationActivity" android:exported="false" />
+        <activity android:name=".ui.chat.DispatchChatActivity" android:exported="false" />
+        <activity android:name=".ui.request.update.RequestUpdateActivity" android:exported="false" />
+        <activity android:name=".ui.request.detail.RequestDetailActivity" android:exported="false" />
+        <activity android:name=".ui.relief.create.CreateReliefRequestActivity" android:exported="false" />
+        <activity android:name=".ui.rescue.create.CreateRescueRequestActivity" android:exported="false" />
+        <activity android:name=".ui.map.SafeMapActivity" android:exported="false" />
+        <activity android:name=".ui.auth.register.RegisterCitizenActivity" android:exported="false" />
+        <activity android:name=".ui.auth.forgot.ForgotPasswordActivity" android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".ui.auth.setup.InitialSetupActivity"
+            android:exported="false"
+            android:finishOnTaskLaunch="true" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:finishOnTaskLaunch="true" />
         <activity
             android:name=".ui.auth.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:finishOnTaskLaunch="true" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

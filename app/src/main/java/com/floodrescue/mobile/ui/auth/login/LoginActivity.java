@@ -12,6 +12,8 @@ import com.floodrescue.mobile.R;
 import com.floodrescue.mobile.core.util.Resource;
 import com.floodrescue.mobile.data.local.SessionManager;
 import com.floodrescue.mobile.databinding.ActivityLoginBinding;
+import com.floodrescue.mobile.ui.auth.forgot.ForgotPasswordActivity;
+import com.floodrescue.mobile.ui.auth.register.RegisterCitizenActivity;
 import com.floodrescue.mobile.ui.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,6 +29,13 @@ public class LoginActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
+        binding.buttonBack.setOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
+        binding.textForgotPassword.setOnClickListener(view ->
+                startActivity(new Intent(this, ForgotPasswordActivity.class)));
+        binding.buttonBiometric.setOnClickListener(view ->
+                Toast.makeText(this, getString(R.string.login_biometric_coming_soon), Toast.LENGTH_SHORT).show());
+        binding.textRegister.setOnClickListener(view ->
+                startActivity(new Intent(this, RegisterCitizenActivity.class)));
         binding.buttonLogin.setOnClickListener(view -> submitLogin());
 
         viewModel.getLoginState().observe(this, resource -> {

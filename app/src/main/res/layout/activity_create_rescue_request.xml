@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="←"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tạo yêu cầu cứu hộ"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="40dp" android:layout_height="40dp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Vị trí của bạn" android:textColor="@color/text_primary" android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_input_soft"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView android:layout_width="28dp" android:layout_height="28dp" android:background="@drawable/bg_circle_soft" android:gravity="center" android:text="•" android:textColor="@color/accent" android:textSize="18sp" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="123 Đường Lê Lợi, Quận 1, TP. HCM" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vị trí đã được tự động xác định" android:textColor="@color/text_secondary" android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_map_preview">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="Bản đồ vị trí hiện trường" android:textColor="@color/text_secondary" android:textStyle="bold" />
+            <TextView android:layout_width="36dp" android:layout_height="36dp" android:layout_gravity="center" android:background="@drawable/bg_pin_blue" android:gravity="center" android:text="•" android:textColor="@color/white" android:textSize="22sp" />
+        </FrameLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Số lượng người cần cứu" android:textColor="@color/text_primary" android:textStyle="bold" />
+        <EditText android:layout_width="match_parent" android:layout_height="54dp" android:layout_marginTop="8dp" android:background="@drawable/bg_input_soft" android:inputType="number" android:paddingHorizontal="18dp" android:text="1" android:textColor="@color/text_primary" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Đối tượng ưu tiên" android:textColor="@color/text_primary" android:textStyle="bold" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="8dp" android:background="@drawable/bg_input_soft" android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="16dp"><CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Người già" android:textColor="@color/text_primary" /></LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="8dp" android:background="@drawable/bg_input_soft" android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="16dp"><CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Trẻ em" android:textColor="@color/text_primary" /></LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="8dp" android:background="@drawable/bg_input_soft" android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="16dp"><CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" /><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Người bệnh / Người khuyết tật" android:textColor="@color/text_primary" /></LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Mô tả tình trạng hiện tại" android:textColor="@color/text_primary" android:textStyle="bold" />
+        <EditText android:layout_width="match_parent" android:layout_height="120dp" android:layout_marginTop="8dp" android:background="@drawable/bg_input_soft" android:gravity="top" android:hint="Ví dụ: Nước dâng đang cao, kẹt trên mái nhà, cần hỗ trợ y tế khẩn cấp..." android:padding="18dp" android:textColorHint="@color/text_muted" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Hình ảnh hiện trường (nếu có)" android:textColor="@color/text_primary" android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/bg_input_soft"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📷" android:textSize="22sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Thêm ảnh" android:textColor="@color/text_secondary" android:textSize="12sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_photo_placeholder">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="Ảnh" android:textColor="@color/white" android:textStyle="bold" />
+                <TextView android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="top|end" android:background="@drawable/bg_chip_danger" android:gravity="center" android:text="×" android:textColor="@color/danger" android:textStyle="bold" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonSubmitRescue"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_cta_primary"
+            android:text="GỬI YÊU CẦU KHẨN CẤP"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:gravity="center" android:text="Yêu cầu của bạn sẽ được gửi trực tiếp đến trung tâm cứu hộ gần nhất." android:textColor="@color/text_muted" android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>

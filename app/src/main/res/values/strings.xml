@@ -1,17 +1,55 @@
 <resources>
     <string name="app_name">Flood Rescue Mobile</string>
     <string name="app_logo">FR</string>
-    <string name="splash_subtitle">MVVM Android scaffold for the flood rescue system</string>
+    <string name="splash_title">Hệ thống Quản lý Lũ\nlụt</string>
+    <string name="splash_tagline">Cứu hộ &amp; Cứu trợ</string>
+    <string name="splash_status">Đang kết nối hệ thống...</string>
+    <string name="splash_progress">30%%</string>
+    <string name="splash_footer">BAN CHỈ ĐẠO PHÒNG CHỐNG THIÊN TAI</string>
 
-    <string name="login_title">Welcome back</string>
-    <string name="login_subtitle">Sign in with the backend account you created in the rescue system.</string>
-    <string name="login_identifier_hint">Phone number or email</string>
-    <string name="login_password_hint">Password</string>
-    <string name="login_button">Sign in</string>
-    <string name="login_loading">Signing in...</string>
-    <string name="login_success">Login success</string>
-    <string name="login_identifier_error">Please enter phone number or email</string>
-    <string name="login_password_error">Please enter password</string>
+    <string name="onboarding_skip">Bỏ qua</string>
+    <string name="onboarding_title">Kết nối cứu hộ\nkịp thời</string>
+    <string name="onboarding_subtitle">Hỗ trợ người dân trong vùng lũ lụt và điều phối cứu trợ khẩn cấp một cách nhanh chóng và chính xác nhất.</string>
+    <string name="onboarding_next">Tiếp theo →</string>
+
+    <string name="setup_back">Quay lại</string>
+    <string name="setup_globe">◎</string>
+    <string name="setup_title">Thiết lập ban đầu</string>
+    <string name="setup_welcome">Chào mừng bạn</string>
+    <string name="setup_subtitle">Vui lòng chọn ngôn ngữ và khu vực của bạn để bắt đầu trải nghiệm tốt nhất.</string>
+    <string name="setup_language_label">Ngôn ngữ</string>
+    <string name="setup_default_language">Tiếng Việt</string>
+    <string name="setup_city_label">Tỉnh / Thành phố</string>
+    <string name="setup_city_hint">Chọn Tỉnh/Thành phố</string>
+    <string name="setup_district_label">Quận / Huyện</string>
+    <string name="setup_district_hint">Chọn Quận</string>
+    <string name="setup_ward_label">Phường / Xã</string>
+    <string name="setup_ward_hint">Chọn Phường</string>
+    <string name="setup_start">Bắt đầu ngay →</string>
+    <string name="setup_footer">Bạn có thể thay đổi thiết lập này trong phần Cài đặt sau.</string>
+
+    <string name="login_back">Quay lại</string>
+    <string name="login_header">Đăng nhập</string>
+    <string name="login_title">Chào mừng quay lại</string>
+    <string name="login_subtitle">Vui lòng đăng nhập để tiếp tục sử dụng các dịch vụ công dân số.</string>
+    <string name="login_phone_label">Số điện thoại</string>
+    <string name="login_identifier_hint">Nhập số điện thoại của bạn</string>
+    <string name="login_password_label">Mật khẩu</string>
+    <string name="login_password_hint">Nhập mật khẩu</string>
+    <string name="login_button">Đăng nhập</string>
+    <string name="login_loading">Đang đăng nhập...</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <string name="login_identifier_error">Vui lòng nhập số điện thoại</string>
+    <string name="login_password_error">Vui lòng nhập mật khẩu</string>
+    <string name="login_forgot_password">Quên mật khẩu?</string>
+    <string name="login_or">Hoặc</string>
+    <string name="login_biometric">Đăng nhập bằng sinh trắc học</string>
+    <string name="login_no_account">Chưa có tài khoản?</string>
+    <string name="login_register">Đăng ký Citizen</string>
+    <string name="login_footer">Kết nối an toàn &amp; bảo mật 256-bit</string>
+    <string name="login_forgot_password_coming_soon">Tính năng quên mật khẩu sẽ được làm tiếp.</string>
+    <string name="login_biometric_coming_soon">Tính năng sinh trắc học sẽ được làm tiếp.</string>
+    <string name="login_register_coming_soon">Màn đăng ký sẽ được làm tiếp.</string>
 
     <string name="home_title">Flood Rescue Dashboard</string>
     <string name="home_welcome">Hello, %1$s</string>
@@ -26,4 +64,27 @@
     <string name="placeholder_coordinator">Coordinator screens will be added here next.</string>
     <string name="placeholder_chat">Chat screens will be added here next.</string>
     <string name="not_available">Not available</string>
+
+    <string-array name="setup_languages">
+        <item>Tiếng Việt</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="setup_cities">
+        <item>TP. Hồ Chí Minh</item>
+        <item>Hà Nội</item>
+        <item>Đà Nẵng</item>
+    </string-array>
+
+    <string-array name="setup_districts">
+        <item>Quận 1</item>
+        <item>Quận Bình Thạnh</item>
+        <item>TP. Thủ Đức</item>
+    </string-array>
+
+    <string-array name="setup_wards">
+        <item>Phường Bến Nghé</item>
+        <item>Phường 25</item>
+        <item>Phường Linh Trung</item>
+    </string-array>
 </resources>
