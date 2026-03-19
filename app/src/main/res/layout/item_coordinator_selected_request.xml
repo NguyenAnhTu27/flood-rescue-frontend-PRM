@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_coordinator_selection_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <TextView
+        android:id="@+id/textSelectedRequestBadge"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/bg_chip_info"
+        android:gravity="center"
+        android:text="!"
+        android:textColor="@color/accent_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textSelectedRequestCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#RESC-2904"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textSelectedRequestAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Phường Bến Thành, Quận 1, TP.HCM"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textSelectedRequestMeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_chip_soft"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="3 người • KHẨN CẤP"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/buttonRemoveSelectedRequest"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_chip_soft"
+        android:gravity="center"
+        android:text="×"
+        android:textColor="@color/text_muted"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

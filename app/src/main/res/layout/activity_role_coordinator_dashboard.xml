@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_soft"
@@ -104,26 +105,48 @@
             <LinearLayout
                 android:id="@+id/cardCoordinatorQueue"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="88dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_quick_card"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:padding="14dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/coordinator_dashboard_quick_rescue"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_chip_info"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_nav_list"
+                        android:tint="@color/accent_dark" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/coordinator_dashboard_quick_rescue_sub"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/coordinator_dashboard_quick_rescue"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/coordinator_dashboard_quick_rescue_sub"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <Space
@@ -133,26 +156,48 @@
             <LinearLayout
                 android:id="@+id/cardCoordinatorTeams"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="88dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_quick_card"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:padding="14dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/coordinator_dashboard_quick_team"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_chip_success"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_queue_team"
+                        android:tint="@color/success" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/coordinator_dashboard_quick_team_sub"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/coordinator_dashboard_quick_team"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/coordinator_dashboard_quick_team_sub"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -171,7 +216,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_coordinator_request" />
 
         <LinearLayout
             android:id="@+id/sectionEmptyRequests"
@@ -204,7 +251,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_coordinator_task_group" />
 
         <LinearLayout
             android:id="@+id/sectionEmptyTeams"

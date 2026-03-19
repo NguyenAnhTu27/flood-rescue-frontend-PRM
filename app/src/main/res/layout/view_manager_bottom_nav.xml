@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="12dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="14dp">
+
+    <TextView
+        android:id="@+id/navManagerDashboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Dashboard"
+        android:textColor="@color/nav_inactive"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/navManagerRequests"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Requests"
+        android:textColor="@color/nav_inactive"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/navManagerDispatch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Dispatch"
+        android:textColor="@color/nav_inactive"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/navManagerProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Profile"
+        android:textColor="@color/nav_inactive"
+        android:textSize="12sp" />
+</LinearLayout>

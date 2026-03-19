@@ -4,10 +4,20 @@ import com.floodrescue.mobile.data.model.request.CitizenFeedbackRequest;
 import com.floodrescue.mobile.data.model.request.CitizenRescueConfirmRequest;
 import com.floodrescue.mobile.data.model.request.CitizenRescueReopenRequest;
 import com.floodrescue.mobile.data.model.request.CitizenRescueUpdateRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorAddNoteRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorBlockCitizenRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorCreateTaskGroupRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorDuplicateRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorPrioritizeRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorUnblockCitizenRequest;
+import com.floodrescue.mobile.data.model.request.CoordinatorVerifyRequest;
 import com.floodrescue.mobile.data.model.request.LoginRequest;
 import com.floodrescue.mobile.data.model.request.RegisterCitizenRequest;
 import com.floodrescue.mobile.data.model.request.RescueNoteRequest;
 import com.floodrescue.mobile.data.model.request.RescueRequestCreatePayload;
+import com.floodrescue.mobile.data.model.request.RescuerReliefStatusUpdateRequest;
+import com.floodrescue.mobile.data.model.request.RescuerTaskGroupEscalateRequest;
+import com.floodrescue.mobile.data.model.request.RescuerTeamLocationUpdateRequest;
 import com.floodrescue.mobile.data.model.request.SendChatMessageRequest;
 import com.floodrescue.mobile.data.model.request.UpdateMyProfileRequest;
 import com.floodrescue.mobile.data.model.response.ApiMessageResponse;
@@ -120,6 +130,18 @@ public interface ApiService {
     @GET("api/relief/requests/{id}")
     Call<JsonElement> getReliefRequest(@Path("id") long id);
 
+    @PUT("api/relief/requests/{id}/approve-dispatch")
+    Call<JsonElement> approveManagerReliefDispatch(
+            @Path("id") long id,
+            @Body JsonElement request
+    );
+
+    @PUT("api/relief/requests/{id}/reject")
+    Call<JsonElement> rejectManagerReliefRequest(
+            @Path("id") long id,
+            @Body JsonElement request
+    );
+
     @POST("api/feedback/citizen")
     Call<JsonElement> submitCitizenFeedback(@Body CitizenFeedbackRequest request);
 
@@ -141,6 +163,12 @@ public interface ApiService {
     @GET("api/rescue/coordinator/citizens/blocked")
     Call<JsonElement> getBlockedCitizens();
 
+    @POST("api/rescue/coordinator/citizens/{citizenId}/unblock")
+    Call<JsonElement> unblockBlockedCitizen(
+            @Path("citizenId") long citizenId,
+            @Body CoordinatorUnblockCitizenRequest request
+    );
+
     @GET("api/rescue/coordinator/task-groups")
     Call<JsonElement> getCoordinatorTaskGroups(
             @Query("status") String status,
@@ -148,8 +176,48 @@ public interface ApiService {
             @Query("size") Integer size
     );
 
+    @POST("api/rescue/coordinator/task-groups")
+    Call<JsonElement> createCoordinatorTaskGroup(@Body CoordinatorCreateTaskGroupRequest request);
+
     @GET("api/rescue/coordinator/task-groups/{id}")
     Call<JsonElement> getCoordinatorTaskGroup(@Path("id") long id);
+
+    @POST("api/rescue/coordinator/requests/{id}/verify")
+    Call<JsonElement> verifyCoordinatorRescueRequest(
+            @Path("id") long id,
+            @Body CoordinatorVerifyRequest request
+    );
+
+    @PUT("api/rescue/coordinator/requests/{id}/priority")
+    Call<JsonElement> updateCoordinatorRescuePriority(
+            @Path("id") long id,
+            @Body CoordinatorPrioritizeRequest request
+    );
+
+    @POST("api/rescue/coordinator/requests/{id}/duplicate")
+    Call<JsonElement> markCoordinatorRescueDuplicate(
+            @Path("id") long id,
+            @Body CoordinatorDuplicateRequest request
+    );
+
+    @PUT("api/rescue/coordinator/requests/{id}/status")
+    Call<JsonElement> updateCoordinatorRescueStatus(
+            @Path("id") long id,
+            @Query("status") String status,
+            @Query("note") String note
+    );
+
+    @POST("api/rescue/coordinator/requests/{id}/notes")
+    Call<JsonElement> addCoordinatorRescueNote(
+            @Path("id") long id,
+            @Body CoordinatorAddNoteRequest request
+    );
+
+    @POST("api/rescue/coordinator/requests/{id}/citizen-block")
+    Call<JsonElement> blockCoordinatorCitizenFromRequest(
+            @Path("id") long id,
+            @Body CoordinatorBlockCitizenRequest request
+    );
 
     @GET("api/rescue/rescuer/dashboard")
     Call<JsonElement> getRescuerDashboard();
@@ -163,6 +231,12 @@ public interface ApiService {
 
     @GET("api/rescue/rescuer/tasks/{id}")
     Call<JsonElement> getRescuerTask(@Path("id") long id);
+
+    @POST("api/rescue/rescuer/tasks/{id}/notes")
+    Call<JsonElement> addRescuerTaskNote(
+            @Path("id") long id,
+            @Body RescueNoteRequest request
+    );
 
     @PUT("api/rescue/rescuer/tasks/{id}/status")
     Call<JsonElement> updateRescuerTaskStatus(
@@ -181,8 +255,27 @@ public interface ApiService {
     @GET("api/rescue/rescuer/task-groups/{id}")
     Call<JsonElement> getRescuerTaskGroup(@Path("id") long id);
 
+    @PUT("api/rescue/rescuer/task-groups/{id}/status")
+    Call<JsonElement> updateRescuerTaskGroupStatus(
+            @Path("id") long id,
+            @Query("status") String status,
+            @Query("note") String note
+    );
+
+    @POST("api/rescue/rescuer/task-groups/{id}/escalate")
+    Call<JsonElement> escalateRescuerTaskGroup(
+            @Path("id") long id,
+            @Body RescuerTaskGroupEscalateRequest request
+    );
+
     @GET("api/rescue/rescuer/task-groups/{id}/emergency-acks")
     Call<JsonElement> getRescuerEmergencyAcks(@Path("id") long id);
+
+    @POST("api/rescue/rescuer/team-location")
+    Call<JsonElement> updateRescuerTeamLocation(@Body RescuerTeamLocationUpdateRequest request);
+
+    @POST("api/rescue/rescuer/assets/return")
+    Call<JsonElement> returnRescuerTeamAssets();
 
     @GET("api/relief/dashboard")
     Call<JsonElement> getManagerDashboard();
@@ -204,6 +297,12 @@ public interface ApiService {
     Call<JsonElement> getRescuerReliefRequests(
             @Query("page") Integer page,
             @Query("size") Integer size
+    );
+
+    @PUT("api/relief/rescuer/requests/{id}/delivery-status")
+    Call<JsonElement> updateRescuerReliefStatus(
+            @Path("id") long id,
+            @Body RescuerReliefStatusUpdateRequest request
     );
 
     @GET("api/areas")
@@ -228,6 +327,12 @@ public interface ApiService {
 
     @GET("api/inventory/receipts/{id}")
     Call<JsonElement> getInventoryReceipt(@Path("id") long id);
+
+    @PUT("api/inventory/receipts/{id}/approve")
+    Call<JsonElement> approveInventoryReceipt(@Path("id") long id);
+
+    @PUT("api/inventory/receipts/{id}/cancel")
+    Call<JsonElement> cancelInventoryReceipt(@Path("id") long id);
 
     @GET("api/inventory/issues/{id}")
     Call<JsonElement> getInventoryIssue(@Path("id") long id);
@@ -281,6 +386,12 @@ public interface ApiService {
     @GET("api/admin/permissions")
     Call<JsonElement> getAdminPermissions();
 
+    @PUT("api/admin/roles/{roleCode}/permissions")
+    Call<JsonElement> updateAdminRolePermissions(
+            @Path("roleCode") String roleCode,
+            @Body JsonElement request
+    );
+
     @GET("api/admin/catalogs")
     Call<JsonElement> getAdminCatalogs();
 
@@ -295,6 +406,30 @@ public interface ApiService {
 
     @GET("api/admin/teams/member-candidates")
     Call<JsonElement> getAdminTeamMemberCandidates();
+
+    @POST("api/admin/create-user")
+    Call<JsonElement> createAdminUser(@Body JsonElement request);
+
+    @PUT("api/admin/users/{id}")
+    Call<JsonElement> updateAdminUser(
+            @Path("id") long id,
+            @Body JsonElement request
+    );
+
+    @DELETE("api/admin/users/{id}")
+    Call<JsonElement> deleteAdminUser(@Path("id") long id);
+
+    @PUT("api/admin/users/{id}/reset-password")
+    Call<JsonElement> resetAdminUserPassword(
+            @Path("id") long id,
+            @Body JsonElement request
+    );
+
+    @PUT("api/admin/users/{id}/status")
+    Call<JsonElement> updateAdminUserStatus(
+            @Path("id") long id,
+            @Body JsonElement request
+    );
 
     @GET("api/feedback/admin")
     Call<JsonElement> getAdminFeedbacks(
