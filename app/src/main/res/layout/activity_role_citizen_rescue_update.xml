@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="8dp">
+
+        <FrameLayout
+            android:id="@+id/buttonBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_surface_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back"
+                android:tint="@color/text_primary" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/citizen_update_title"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingBottom="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/citizen_update_section_title"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/citizen_update_section_subtitle"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_update_people_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input_soft"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <FrameLayout
+                        android:id="@+id/buttonDecreasePeople"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_surface_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_rescue_minus"
+                            android:tint="@color/text_primary" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/textUpdatePeopleCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="14dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:id="@+id/buttonIncreasePeople"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_surface_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_rescue_plus"
+                            android:tint="@color/text_primary" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_update_priority_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/buttonUpdatePriorityHigh"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_rescue_priority_active"
+                        android:gravity="center"
+                        android:text="@string/citizen_create_priority_high"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:id="@+id/buttonUpdatePriorityMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_rescue_priority_idle"
+                        android:gravity="center"
+                        android:text="@string/citizen_create_priority_medium"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:id="@+id/buttonUpdatePriorityLow"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_rescue_priority_idle"
+                        android:gravity="center"
+                        android:text="@string/citizen_create_priority_low"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutUpdateDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/citizen_detail_edit_description_label">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUpdateDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:minLines="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutUpdateAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:hint="@string/citizen_detail_edit_address_label">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUpdateAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/citizen_create_photos_label"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/citizen_create_photos_limit"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/updatePhotoSlot1"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_surface_card">
+
+                    <ImageView
+                        android:id="@+id/updateImagePhoto1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/buttonRemovePhoto1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top|end"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_rescue_minus"
+                        android:tint="@color/danger" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/updatePhotoSlot2"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_surface_card">
+
+                    <ImageView
+                        android:id="@+id/updateImagePhoto2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/buttonRemovePhoto2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top|end"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_rescue_minus"
+                        android:tint="@color/danger" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/updatePhotoSlot3"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_surface_card">
+
+                    <ImageView
+                        android:id="@+id/updateImagePhoto3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/buttonRemovePhoto3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top|end"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/bg_circle_soft"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_rescue_minus"
+                        android:tint="@color/danger" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardUpdateAddPhoto"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_surface_card"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_rescue_camera"
+                        android:tint="@color/text_secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/citizen_create_add_photo"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="18dp"
+        android:paddingBottom="14dp">
+
+        <ProgressBar
+            android:id="@+id/progressUpdate"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/buttonSaveUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_cta_primary"
+            android:gravity="center"
+            android:text="@string/citizen_update_save"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/buttonCancelUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/citizen_update_cancel"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

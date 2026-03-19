@@ -2,7 +2,10 @@ package com.floodrescue.mobile.ui.auth.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,8 +17,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.floodrescue.mobile.R;
 import com.floodrescue.mobile.core.util.Resource;
 import com.floodrescue.mobile.data.local.SessionManager;
+import com.floodrescue.mobile.ui.auth.publicpage.privacy.PrivacyPolicyActivity;
 import com.floodrescue.mobile.ui.auth.register.RegisterCitizenActivity;
+import com.floodrescue.mobile.ui.auth.publicpage.support.SupportContactActivity;
+import com.floodrescue.mobile.ui.auth.publicpage.terms.TermsOfUseActivity;
 import com.floodrescue.mobile.ui.home.HomeActivity;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editIdentifier;
     private EditText editPassword;
     private TextView buttonLogin;
+    private MaterialButton buttonRegisterCitizen;
+    private View layoutLoginError;
+    private TextView textLoginError;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,15 +48,38 @@ public class LoginActivity extends AppCompatActivity {
         editIdentifier = findViewById(R.id.editIdentifier);
         editPassword = findViewById(R.id.editPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
+        buttonRegisterCitizen = findViewById(R.id.buttonRegisterCitizen);
+        layoutLoginError = findViewById(R.id.layoutLoginError);
+        textLoginError = findViewById(R.id.textLoginError);
 
-        findViewById(R.id.buttonBack).setOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
-        findViewById(R.id.textForgotPassword).setOnClickListener(view ->
-                Toast.makeText(this, "Chức năng hỗ trợ đăng nhập sẽ được bổ sung sau.", Toast.LENGTH_SHORT).show());
-        findViewById(R.id.buttonBiometric).setOnClickListener(view ->
-                Toast.makeText(this, getString(R.string.login_biometric_coming_soon), Toast.LENGTH_SHORT).show());
-        findViewById(R.id.textRegister).setOnClickListener(view ->
-                startActivity(new Intent(this, RegisterCitizenActivity.class)));
         buttonLogin.setOnClickListener(view -> submitLogin());
+        buttonRegisterCitizen.setOnClickListener(view ->
+                startActivity(new Intent(this, RegisterCitizenActivity.class)));
+        findViewById(R.id.textTerms).setOnClickListener(view ->
+                startActivity(TermsOfUseActivity.newIntent(this, TermsOfUseActivity.SOURCE_LOGIN)));
+        findViewById(R.id.textPrivacy).setOnClickListener(view ->
+                startActivity(PrivacyPolicyActivity.newIntent(this, TermsOfUseActivity.SOURCE_LOGIN)));
+        findViewById(R.id.textSupport).setOnClickListener(view ->
+                startActivity(SupportContactActivity.newIntent(this, TermsOfUseActivity.SOURCE_LOGIN)));
+
+        TextWatcher clearErrorWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                layoutIdentifier.setError(null);
+                layoutPassword.setError(null);
+                hideLoginError();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        editIdentifier.addTextChangedListener(clearErrorWatcher);
+        editPassword.addTextChangedListener(clearErrorWatcher);
 
         viewModel.getLoginState().observe(this, resource -> {
             if (resource == null) {
@@ -54,24 +87,23 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (resource.getStatus() == Resource.Status.LOADING) {
-                buttonLogin.setEnabled(false);
-                buttonLogin.setText("Đang đăng nhập...");
+                setLoadingState(true);
                 return;
             }
 
-            buttonLogin.setEnabled(true);
-            buttonLogin.setText("Đăng nhập");
+            setLoadingState(false);
 
             if (resource.getStatus() == Resource.Status.SUCCESS && resource.getData() != null) {
+                hideLoginError();
                 new SessionManager(this).saveLoginSession(resource.getData());
-                Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, HomeActivity.class));
                 finish();
                 return;
             }
 
             if (resource.getStatus() == Resource.Status.ERROR) {
-                Toast.makeText(this, resource.getMessage(), Toast.LENGTH_LONG).show();
+                showLoginError(resource.getMessage());
             }
         });
     }
@@ -82,17 +114,36 @@ public class LoginActivity extends AppCompatActivity {
 
         layoutIdentifier.setError(null);
         layoutPassword.setError(null);
+        hideLoginError();
 
         if (TextUtils.isEmpty(identifier)) {
-            layoutIdentifier.setError("Vui lòng nhập email hoặc số điện thoại");
+            layoutIdentifier.setError(getString(R.string.login_identifier_error));
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            layoutPassword.setError("Vui lòng nhập mật khẩu");
+            layoutPassword.setError(getString(R.string.login_password_error));
             return;
         }
 
         viewModel.login(identifier, password);
+    }
+
+    private void setLoadingState(boolean loading) {
+        buttonLogin.setEnabled(!loading);
+        buttonLogin.setAlpha(loading ? 0.72f : 1f);
+        buttonLogin.setText(loading ? getString(R.string.login_loading) : getString(R.string.login_button));
+        buttonRegisterCitizen.setEnabled(!loading);
+        buttonRegisterCitizen.setAlpha(loading ? 0.72f : 1f);
+    }
+
+    private void showLoginError(String message) {
+        String fallback = "Tài khoản hoặc mật khẩu không chính xác";
+        textLoginError.setText(message == null || message.trim().isEmpty() ? fallback : message.trim());
+        layoutLoginError.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoginError() {
+        layoutLoginError.setVisibility(View.GONE);
     }
 }

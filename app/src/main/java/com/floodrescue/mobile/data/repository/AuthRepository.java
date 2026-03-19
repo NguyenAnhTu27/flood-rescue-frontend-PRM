@@ -9,6 +9,8 @@ import com.floodrescue.mobile.data.model.request.RegisterCitizenRequest;
 import com.floodrescue.mobile.data.model.response.ApiMessageResponse;
 import com.floodrescue.mobile.data.model.response.LoginResponse;
 
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +31,7 @@ public class AuthRepository {
                     callback.onSuccess(response.body());
                     return;
                 }
-                callback.onError("Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc backend.");
+                callback.onError(parseApiMessage(response, "Đăng nhập thất bại. Vui lòng kiểm tra tài khoản hoặc backend."));
             }
 
             @Override
@@ -47,7 +49,7 @@ public class AuthRepository {
                     callback.onSuccess(response.body());
                     return;
                 }
-                callback.onError("Đăng ký thất bại. Vui lòng kiểm tra lại dữ liệu.");
+                callback.onError(parseApiMessage(response, "Đăng ký thất bại. Vui lòng kiểm tra lại dữ liệu."));
             }
 
             @Override
@@ -55,5 +57,35 @@ public class AuthRepository {
                 callback.onError(throwable.getMessage() == null ? "Không thể kết nối tới server." : throwable.getMessage());
             }
         });
+    }
+
+    private String parseApiMessage(Response<?> response, String fallback) {
+        try {
+            if (response.errorBody() == null) {
+                return fallback;
+            }
+            String raw = response.errorBody().string();
+            if (raw == null || raw.trim().isEmpty()) {
+                return fallback;
+            }
+            JSONObject jsonObject = new JSONObject(raw);
+            JSONObject errors = jsonObject.optJSONObject("errors");
+            if (errors != null) {
+                String[] keys = {"identifier", "password", "phone", "email", "fullName"};
+                for (String key : keys) {
+                    String value = errors.optString(key);
+                    if (!value.isEmpty()) {
+                        return value;
+                    }
+                }
+            }
+            String message = jsonObject.optString("message");
+            if (!message.isEmpty()) {
+                return message;
+            }
+        } catch (Exception ignored) {
+            // Use fallback if backend error body cannot be parsed.
+        }
+        return fallback;
     }
 }

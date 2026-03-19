@@ -1,8 +1,11 @@
 package com.floodrescue.mobile.ui.auth.register;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.widget.CheckBox;
+import android.text.TextWatcher;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.floodrescue.mobile.R;
+import com.floodrescue.mobile.ui.auth.publicpage.privacy.PrivacyPolicyActivity;
+import com.floodrescue.mobile.ui.auth.publicpage.support.SupportContactActivity;
+import com.floodrescue.mobile.ui.auth.publicpage.terms.TermsOfUseActivity;
 import com.floodrescue.mobile.data.model.response.ApiMessageResponse;
 import com.floodrescue.mobile.data.repository.AuthRepository;
 import com.floodrescue.mobile.data.repository.RepositoryCallback;
@@ -18,18 +24,22 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterCitizenActivity extends AppCompatActivity {
 
+    private static final String VIETNAM_PHONE_PATTERN =
+            "^(\\+84|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-6|8|9]|9[0-4|6-9])[0-9]{7,8}$";
+    private static final String PASSWORD_PATTERN =
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,72}$";
+
     private TextInputLayout layoutFullName;
     private TextInputLayout layoutPhone;
     private TextInputLayout layoutEmail;
     private TextInputLayout layoutPassword;
-    private TextInputLayout layoutConfirmPassword;
     private EditText editFullName;
     private EditText editPhone;
     private EditText editEmail;
     private EditText editPassword;
-    private EditText editConfirmPassword;
-    private CheckBox checkPolicy;
     private TextView buttonRegisterCitizen;
+    private View layoutRegisterError;
+    private TextView textRegisterError;
     private AuthRepository authRepository;
 
     @Override
@@ -42,65 +52,85 @@ public class RegisterCitizenActivity extends AppCompatActivity {
         layoutPhone = findViewById(R.id.layoutPhone);
         layoutEmail = findViewById(R.id.layoutEmail);
         layoutPassword = findViewById(R.id.layoutPassword);
-        layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
         editFullName = findViewById(R.id.editFullName);
         editPhone = findViewById(R.id.editPhone);
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
-        editConfirmPassword = findViewById(R.id.editConfirmPassword);
-        checkPolicy = findViewById(R.id.checkPolicy);
         buttonRegisterCitizen = findViewById(R.id.buttonRegisterCitizen);
+        layoutRegisterError = findViewById(R.id.layoutRegisterError);
+        textRegisterError = findViewById(R.id.textRegisterError);
 
         findViewById(R.id.buttonBack).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
         findViewById(R.id.textGoLogin).setOnClickListener(v -> finish());
+        findViewById(R.id.textTerms).setOnClickListener(v ->
+                startActivity(TermsOfUseActivity.newIntent(this, TermsOfUseActivity.SOURCE_REGISTER)));
+        findViewById(R.id.textPrivacy).setOnClickListener(v ->
+                startActivity(PrivacyPolicyActivity.newIntent(this, TermsOfUseActivity.SOURCE_REGISTER)));
+        findViewById(R.id.textSupport).setOnClickListener(v ->
+                startActivity(SupportContactActivity.newIntent(this, TermsOfUseActivity.SOURCE_REGISTER)));
         buttonRegisterCitizen.setOnClickListener(v -> submitRegister());
+
+        TextWatcher clearErrorWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                clearErrors();
+                hideRegisterError();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+        editFullName.addTextChangedListener(clearErrorWatcher);
+        editPhone.addTextChangedListener(clearErrorWatcher);
+        editEmail.addTextChangedListener(clearErrorWatcher);
+        editPassword.addTextChangedListener(clearErrorWatcher);
     }
 
     private void submitRegister() {
         String fullName = textOf(editFullName);
-        String phone = textOf(editPhone);
+        String phone = normalizePhone(textOf(editPhone));
         String email = textOf(editEmail);
         String password = textOf(editPassword);
-        String confirmPassword = textOf(editConfirmPassword);
 
         clearErrors();
+        hideRegisterError();
 
         if (TextUtils.isEmpty(fullName)) {
-            layoutFullName.setError("Vui lòng nhập họ và tên");
+            layoutFullName.setError(getString(R.string.register_fullname_error));
             return;
         }
-        if (TextUtils.isEmpty(phone)) {
-            layoutPhone.setError("Vui lòng nhập số điện thoại");
+        if (fullName.length() > 120) {
+            layoutFullName.setError("Họ và tên không được vượt quá 120 ký tự");
             return;
         }
-        if (TextUtils.isEmpty(password)) {
-            layoutPassword.setError("Vui lòng nhập mật khẩu");
+        if (TextUtils.isEmpty(phone) || !phone.matches(VIETNAM_PHONE_PATTERN)) {
+            layoutPhone.setError(getString(R.string.register_phone_error));
             return;
         }
-        if (password.length() < 6) {
-            layoutPassword.setError("Mật khẩu phải có ít nhất 6 ký tự");
+        if (!TextUtils.isEmpty(email) && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            layoutEmail.setError(getString(R.string.register_email_error));
             return;
         }
-        if (!password.equals(confirmPassword)) {
-            layoutConfirmPassword.setError("Mật khẩu xác nhận không khớp");
-            return;
-        }
-        if (!checkPolicy.isChecked()) {
-            Toast.makeText(this, "Bạn cần đồng ý điều khoản trước khi đăng ký.", Toast.LENGTH_SHORT).show();
+        if (!password.matches(PASSWORD_PATTERN)) {
+            layoutPassword.setError(getString(R.string.register_password_error));
             return;
         }
 
-        buttonRegisterCitizen.setEnabled(false);
-        buttonRegisterCitizen.setText("Đang đăng ký...");
-
+        setLoadingState(true);
         authRepository.registerCitizen(fullName, phone, email, password, new RepositoryCallback<ApiMessageResponse>() {
             @Override
             public void onSuccess(ApiMessageResponse data) {
                 runOnUiThread(() -> {
-                    buttonRegisterCitizen.setEnabled(true);
-                    buttonRegisterCitizen.setText("Đăng ký tài khoản");
+                    setLoadingState(false);
                     Toast.makeText(RegisterCitizenActivity.this,
-                            data == null ? "Đăng ký thành công" : data.getMessage(),
+                            data == null || data.getMessage().isEmpty()
+                                    ? getString(R.string.register_success)
+                                    : data.getMessage(),
                             Toast.LENGTH_LONG).show();
                     finish();
                 });
@@ -109,12 +139,27 @@ public class RegisterCitizenActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 runOnUiThread(() -> {
-                    buttonRegisterCitizen.setEnabled(true);
-                    buttonRegisterCitizen.setText("Đăng ký tài khoản");
-                    Toast.makeText(RegisterCitizenActivity.this, message, Toast.LENGTH_LONG).show();
+                    setLoadingState(false);
+                    showRegisterError(message);
                 });
             }
         });
+    }
+
+    private void setLoadingState(boolean loading) {
+        buttonRegisterCitizen.setEnabled(!loading);
+        buttonRegisterCitizen.setAlpha(loading ? 0.72f : 1f);
+        buttonRegisterCitizen.setText(loading ? getString(R.string.register_loading) : getString(R.string.register_button));
+    }
+
+    private void showRegisterError(String message) {
+        String fallback = "Không thể tạo tài khoản. Vui lòng kiểm tra lại thông tin.";
+        textRegisterError.setText(message == null || message.trim().isEmpty() ? fallback : message.trim());
+        layoutRegisterError.setVisibility(View.VISIBLE);
+    }
+
+    private void hideRegisterError() {
+        layoutRegisterError.setVisibility(View.GONE);
     }
 
     private void clearErrors() {
@@ -122,10 +167,16 @@ public class RegisterCitizenActivity extends AppCompatActivity {
         layoutPhone.setError(null);
         layoutEmail.setError(null);
         layoutPassword.setError(null);
-        layoutConfirmPassword.setError(null);
     }
 
     private String textOf(EditText editText) {
         return editText.getText() == null ? "" : editText.getText().toString().trim();
+    }
+
+    private String normalizePhone(String phone) {
+        if (phone == null || phone.isEmpty()) {
+            return "";
+        }
+        return phone.replaceAll("[\\s\\-\\(\\)\\.]", "");
     }
 }

@@ -1,268 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/page_bg"
-    android:orientation="vertical">
+    android:background="@color/background_soft"
+    android:fillViewport="true">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/bg_dashboard_container">
 
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="12dp"
+            android:elevation="2dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:background="@drawable/bg_circle_soft">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_nav_profile" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_gradient"
-                android:elevation="6dp"
+                android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_marginStart="10dp">
 
                 <TextView
+                    android:id="@+id/textCoordinatorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_chip_info"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="6dp"
-                    android:text="COORDINATOR"
-                    android:textColor="@color/accent"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:text="Coordinator Name"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textCoordinatorRole"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Trung tâm điều phối"
-                            android:textColor="@color/soft_white"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/textCoordinatorName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Điều phối viên"
-                            android:textColor="@color/white"
-                            android:textSize="26sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textCoordinatorRole"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Điều phối"
-                            android:textColor="@color/soft_white"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textCoordinatorInitial"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_circle_soft"
-                        android:gravity="center"
-                        android:text="DP"
-                        android:textColor="@color/accent"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:text="Điều phối viên"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textCoordinatorInitial"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="AB"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/bg_quick_purple" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textCoordinatorDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Thứ Hai, 23 Tháng 10, 2023"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCoordinatorMap"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/coordinator_dashboard_online"
+            android:textColor="@color/accent"
+            app:strokeColor="@color/accent"
+            app:strokeWidth="2dp"
+            app:cornerRadius="20dp" />
+
+        <!-- Quick Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="12dp">
 
             <LinearLayout
                 android:id="@+id/cardCoordinatorQueue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/bg_surface_card"
-                android:elevation="3dp"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quick_card"
                 android:orientation="vertical"
-                android:padding="18dp">
+                android:gravity="center"
+                android:padding="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hàng đợi xác minh"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
+                    android:text="@string/coordinator_dashboard_quick_rescue"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Mở nhanh chi tiết yêu cầu để kiểm tra thông tin hiện trường và quyết định bước xử lý."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
+                    android:text="@string/coordinator_dashboard_quick_rescue_sub"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/cardCoordinatorTeams"
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_green"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nhom nhiem vu"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCoordinatorChat"
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_purple"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cong dan bi chan"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
+                android:id="@+id/cardCoordinatorTeams"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_quick_card"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="14dp">
 
-                <LinearLayout
-                    android:id="@+id/cardCoordinatorMap"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_orange"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bản đồ"
-                        android:textColor="@color/text_primary" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCoordinatorNotifications"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_pink"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thông báo"
-                        android:textColor="@color/text_primary" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCoordinatorProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_green"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hồ sơ"
-                        android:textColor="@color/text_primary" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCoordinatorMap"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Bản đồ" />
+                    android:text="@string/coordinator_dashboard_quick_team"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCoordinatorNotifications"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:text="Thông báo" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCoordinatorProfile"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Hồ sơ" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCoordinatorLogout"
-                    style="@style/Widget.Material3.Button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:text="Đăng xuất"
-                    app:backgroundTint="@color/primary_dark" />
+                    android:text="@string/coordinator_dashboard_quick_team_sub"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <!-- Urgent requests -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/coordinator_dashboard_urgent_title"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerUrgentRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/sectionEmptyRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/citizen_request_empty"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+
+        <!-- Teams -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/coordinator_dashboard_team_title"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCoordinatorTeams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/sectionEmptyTeams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="12dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textCoordinatorTeamsError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_coordinator"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textCoordinatorError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/danger"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progressCoordinator"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <!-- Bottom nav -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_citizen_dashboard_nav_center"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="12dp">
+
+            <LinearLayout
+                android:id="@+id/buttonCoordinatorHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_dashboard_nav_home"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonCoordinatorRequests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_dashboard_nav_requests"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonCoordinatorNotifications"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_dashboard_nav_notifications"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonCoordinatorLogout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_logout"
+                    android:textColor="@color/danger"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

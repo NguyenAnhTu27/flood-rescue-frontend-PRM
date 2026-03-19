@@ -6,7 +6,7 @@
     android:background="@color/page_bg"
     android:orientation="vertical">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,31 +16,436 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="18dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_gradient"
-                android:elevation="6dp"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_chip_soft"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="6dp"
-                    android:text="CITIZEN"
-                    android:textColor="@color/accent"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/citizen_dashboard_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textCitizenRole"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/citizen_dashboard_role_default"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/buttonOpenNotifications"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_surface_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_nav_notification"
+                        android:tint="@color/primary" />
+
+                    <TextView
+                        android:id="@+id/textNotificationBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_citizen_dashboard_badge"
+                        android:gravity="center"
+                        android:minWidth="20dp"
+                        android:paddingHorizontal="5dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cardDashboardAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_citizen_dashboard_alert"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_citizen_sos"
+                    android:tint="@color/danger" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textAlertTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/citizen_dashboard_alert_default_title"
+                        android:textColor="@color/danger"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textAlertContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/citizen_dashboard_alert_default_content"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:strokeColor="@color/stroke_soft"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textCitizenInitial"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:background="@drawable/bg_citizen_dashboard_icon_circle"
+                            android:gravity="center"
+                            android:text="NA"
+                            android:textColor="@color/primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/citizen_dashboard_account_label"
+                                android:textColor="@color/text_muted"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textCitizenName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@string/citizen_dashboard_name_placeholder"
+                                android:textColor="@color/text_primary"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textUnreadSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_chip_info"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="6dp"
+                            android:text="@string/citizen_dashboard_unread_empty"
+                            android:textColor="@color/accent_dark"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_citizen_dashboard_hero"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/citizen_dashboard_hero_title"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/citizen_dashboard_hero_subtitle"
+                            android:textColor="@color/soft_white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/buttonCreateRescue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/bg_citizen_dashboard_hero_button"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:paddingHorizontal="18dp"
+                            android:text="@string/citizen_dashboard_sos_button"
+                            android:textColor="@color/accent_dark"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="@string/citizen_dashboard_quick_actions"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/cardCitizenRequestList"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_citizen_dashboard_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_nav_list"
+                            android:tint="@color/accent_dark" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/citizen_dashboard_quick_requests"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardCitizenHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_citizen_dashboard_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_quick_history"
+                            android:tint="@color/accent_dark" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/citizen_dashboard_quick_history"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/cardCitizenProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_citizen_dashboard_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_nav_profile"
+                            android:tint="@color/accent_dark" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/citizen_dashboard_quick_profile"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardCitizenFeedback"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_citizen_dashboard_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_quick_feedback"
+                            android:tint="@color/accent_dark" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/citizen_dashboard_quick_feedback"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/citizen_dashboard_recent_requests"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonOpenRequestList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/citizen_dashboard_view_all"
+                    android:textColor="@color/accent_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressDashboard"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/cardRecentRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -51,263 +456,235 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/textRecentRequestCode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bảng điều khiển công dân"
-                            android:textColor="@color/soft_white"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/textCitizenName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Người dùng"
-                            android:textColor="@color/white"
-                            android:textSize="26sp"
+                            android:text="@string/citizen_dashboard_recent_placeholder_code"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textCitizenRole"
+                            android:id="@+id/textRecentRequestTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Công dân"
-                            android:textColor="@color/soft_white"
-                            android:textSize="13sp" />
+                            android:layout_marginTop="4dp"
+                            android:text="@string/citizen_dashboard_updated_default"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textCitizenInitial"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_circle_soft"
-                        android:gravity="center"
-                        android:text="FR"
-                        android:textColor="@color/accent"
-                        android:textSize="18sp"
+                        android:id="@+id/textRecentRequestStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_info"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="@string/citizen_dashboard_status_default"
+                        android:textColor="@color/accent_dark"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/textRecentRequestAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Tạo yêu cầu cứu hộ và theo dõi trạng thái xử lý theo đúng nghiệp vụ mobile."
-                    android:textColor="@color/soft_white"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/citizen_dashboard_address_placeholder"
+                    android:textColor="@color/text_secondary"
                     android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/textRecentRequestDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="3"
+                    android:text="@string/citizen_dashboard_description_placeholder"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textRecentPriority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_warning"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:text="@string/citizen_dashboard_priority_default"
+                        android:textColor="@color/warning"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textRecentFlags"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/citizen_dashboard_flag_waiting"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/citizen_dashboard_detail"
+                        android:textColor="@color/accent_dark"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
+                android:id="@+id/textRecentEmpty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="TÁC VỤ CHÍNH"
-                android:textColor="@color/text_primary"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/cardCitizenRescue"
-                    android:layout_width="0dp"
-                    android:layout_height="148dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_action_rescue"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:background="@drawable/bg_cta_primary"
-                        android:gravity="center"
-                        android:text="!"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        android:text="Tạo yêu cầu&#10;cứu hộ"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCitizenRelief"
-                    android:layout_width="0dp"
-                    android:layout_height="148dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_action_relief"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:background="@drawable/bg_cta_primary"
-                        android:gravity="center"
-                        android:text="+"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        android:text="Danh sach&#10;yeu cau"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cardCitizenTracking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="14dp"
                 android:background="@drawable/bg_surface_card"
-                android:elevation="3dp"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:gravity="center"
+                android:padding="18dp"
+                android:text="@string/citizen_dashboard_empty_recent"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:visibility="gone" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Theo dõi yêu cầu gần nhất"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Mo nhanh chi tiet yeu cau cuu ho de theo doi tien do va di vao man update theo package moi."
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/cardCitizenMap"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_green"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bản đồ"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCitizenNotifications"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_purple"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thông báo"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cardCitizenProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_quick_orange"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hồ sơ"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCitizenMap"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Bản đồ" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCitizenNotifications"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:text="Thông báo" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCitizenProfile"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Hồ sơ" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonCitizenLogout"
-                    style="@style/Widget.Material3.Button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:text="Đăng xuất"
-                    app:backgroundTint="@color/primary_dark" />
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@android:color/white"
+        android:elevation="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_home"
+                android:tint="@color/accent_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/citizen_dashboard_nav_home"
+                android:textColor="@color/accent_dark"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navRequestList"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_list"
+                android:tint="@color/nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/citizen_dashboard_nav_requests"
+                android:textColor="@color/nav_inactive"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/navCreateRescue"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_citizen_dashboard_nav_center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_add"
+                    android:tint="@color/white" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/navNotifications"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_notification"
+                android:tint="@color/nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/citizen_dashboard_nav_notifications"
+                android:textColor="@color/nav_inactive"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_profile"
+                android:tint="@color/nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/citizen_dashboard_nav_profile"
+                android:textColor="@color/nav_inactive"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

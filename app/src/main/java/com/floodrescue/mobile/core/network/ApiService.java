@@ -1,27 +1,47 @@
 package com.floodrescue.mobile.core.network;
 
 import com.floodrescue.mobile.data.model.request.CitizenFeedbackRequest;
+import com.floodrescue.mobile.data.model.request.CitizenRescueConfirmRequest;
+import com.floodrescue.mobile.data.model.request.CitizenRescueReopenRequest;
+import com.floodrescue.mobile.data.model.request.CitizenRescueUpdateRequest;
 import com.floodrescue.mobile.data.model.request.LoginRequest;
 import com.floodrescue.mobile.data.model.request.RegisterCitizenRequest;
+import com.floodrescue.mobile.data.model.request.RescueNoteRequest;
+import com.floodrescue.mobile.data.model.request.RescueRequestCreatePayload;
 import com.floodrescue.mobile.data.model.request.SendChatMessageRequest;
 import com.floodrescue.mobile.data.model.request.UpdateMyProfileRequest;
 import com.floodrescue.mobile.data.model.response.ApiMessageResponse;
+import com.floodrescue.mobile.data.model.response.AttachmentUploadResponse;
+import com.floodrescue.mobile.data.model.response.CitizenRescueConfirmResponse;
 import com.floodrescue.mobile.data.model.response.LoginResponse;
+import com.floodrescue.mobile.data.model.response.PublicContentPageResponse;
 import com.floodrescue.mobile.data.model.response.RescueChatMessageResponse;
+import com.floodrescue.mobile.data.model.response.UnreadCountResponse;
 import com.floodrescue.mobile.data.model.response.UserProfileResponse;
 import com.google.gson.JsonElement;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.Part;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import okhttp3.MultipartBody;
 
 public interface ApiService {
+
+    @GET("api/public/runtime-settings")
+    Call<Map<String, String>> getPublicRuntimeSettings();
+
+    @GET("api/public/content-pages/{pageKey}")
+    Call<PublicContentPageResponse> getPublicContentPage(@Path("pageKey") String pageKey);
 
     @POST("api/auth/login")
     Call<LoginResponse> login(@Body LoginRequest request);
@@ -31,6 +51,16 @@ public interface ApiService {
 
     @GET("api/auth/me")
     Call<UserProfileResponse> getMyProfile();
+
+    @GET("api/notifications/me/unread-count")
+    Call<UnreadCountResponse> getUnreadNotificationCount();
+
+    @GET("api/notifications/me")
+    Call<JsonElement> getMyNotifications(
+            @Query("unreadOnly") Boolean unreadOnly,
+            @Query("page") Integer page,
+            @Query("size") Integer size
+    );
 
     @PUT("api/user/profile")
     Call<UserProfileResponse> updateMyProfile(@Body UpdateMyProfileRequest request);
@@ -44,6 +74,42 @@ public interface ApiService {
 
     @GET("api/rescue/citizen/requests/{id}")
     Call<JsonElement> getCitizenRescueRequest(@Path("id") long id);
+
+    @PUT("api/rescue/citizen/requests/{id}")
+    Call<JsonElement> updateCitizenRescueRequest(
+            @Path("id") long id,
+            @Body CitizenRescueUpdateRequest request
+    );
+
+    @DELETE("api/rescue/citizen/requests/{id}")
+    Call<ApiMessageResponse> cancelCitizenRescueRequest(@Path("id") long id);
+
+    @POST("api/rescue/citizen/requests/{id}/notes")
+    Call<JsonElement> addCitizenRescueNote(
+            @Path("id") long id,
+            @Body RescueNoteRequest request
+    );
+
+    @POST("api/rescue/citizen/requests/{id}/confirm-result")
+    Call<CitizenRescueConfirmResponse> confirmCitizenRescueResult(
+            @Path("id") long id,
+            @Body CitizenRescueConfirmRequest request
+    );
+
+    @POST("api/rescue/citizen/requests/{id}/reopen")
+    Call<JsonElement> reopenCitizenRescueRequest(
+            @Path("id") long id,
+            @Body CitizenRescueReopenRequest request
+    );
+
+    @POST("api/rescue/citizen/requests")
+    Call<JsonElement> createCitizenRescueRequest(@Body RescueRequestCreatePayload request);
+
+    @Multipart
+    @POST("api/rescue/citizen/attachments")
+    Call<List<AttachmentUploadResponse>> uploadCitizenRescueAttachments(
+            @Part List<MultipartBody.Part> files
+    );
 
     @GET("api/relief/citizen/requests")
     Call<JsonElement> getCitizenReliefRequests(

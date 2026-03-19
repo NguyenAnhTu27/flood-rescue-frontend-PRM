@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".FloodRescueApp"
@@ -42,6 +44,9 @@
         <activity android:name=".ui.role.citizen.rescue.update.CitizenRescueUpdateActivity" android:exported="false" />
         <activity android:name=".ui.role.citizen.rescue.detail.CitizenRescueDetailActivity" android:exported="false" />
         <activity android:name=".ui.role.citizen.rescue.list.CitizenRescueListActivity" android:exported="false" />
+        <activity android:name=".ui.auth.publicpage.support.SupportContactActivity" android:exported="false" />
+        <activity android:name=".ui.auth.publicpage.privacy.PrivacyPolicyActivity" android:exported="false" />
+        <activity android:name=".ui.auth.publicpage.terms.TermsOfUseActivity" android:exported="false" />
         <activity android:name=".ui.role.admin.dashboard.AdminDashboardActivity" android:exported="false" />
         <activity android:name=".ui.role.manager.dashboard.ManagerDashboardActivity" android:exported="false" />
         <activity android:name=".ui.role.rescuer.dashboard.RescuerDashboardActivity" android:exported="false" />
